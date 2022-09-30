@@ -15,4 +15,4 @@
 ## Interface
 ##### Simple interface, in the middle of the bottom and on the left tips for using the keyboard.  There are two windows in the center, on the left is the text that you need to type on the right for speed.  Right statistics
 ##### Sketch
-(scetch.png)
+![Иллюстрация к проекту](https://github.com/Sanya787/SpeedPrint/scetch.png)
