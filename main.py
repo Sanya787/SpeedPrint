@@ -1,6 +1,7 @@
 import sys
 
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QCheckBox, QPlainTextEdit
+from PyQt5 import uic
+from PyQt5.QtWidgets import QApplication, QWidget
 
 
 class App(QWidget):
@@ -10,10 +11,7 @@ class App(QWidget):
         self.initUI()
 
     def load_interface(self):
-        '''This method loads the entire interface into the widget
-        Returns nothing'''
-
-        pass
+        uic.loadUi('project.ui', self)
 
     def append_widget(self, mark):
         '''Displays a pop-up window with the result of the test'''
@@ -48,3 +46,4 @@ if __name__ == '__main__':
     window = App()
     window.show()
     sys.exit(app.exec())
+    
