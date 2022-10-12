@@ -14,5 +14,5 @@
 ##### 3. pydocstyle
 ## Interface
 ##### Simple interface, in the middle of the bottom and on the left tips for using the keyboard.  There are two windows in the center, on the left is the text that you need to type on the right for speed.  Right statistics
-##### Sketch:
-![Иллюстрация к проекту](https://github.com/Sanya787/SpeedPrint/blob/main/scetch.png)
+##### This is how it looks like::
+![Иллюстрация к проекту](https://github.com/Sanya787/SpeedPrint/blob/main/project_image.png)
