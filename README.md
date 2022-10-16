@@ -5,9 +5,10 @@
 ##### 2. Count of errors per print time
 ##### 3. Progress statistics
 ## Dependencies 
-##### 1. time (keep track of time)
-##### 2. GPT2 / PyTorch (text generation)
-##### 3. PyQT5 (interface)
+##### 1. time
+##### 2. PyQT5
+##### 3. sys
+##### 4. webbrowser
 ## Codestyle linters and test frameworks
 ##### 1. flake8
 ##### 2. mypy
