@@ -4,6 +4,7 @@
 ##### 1. Print Speed ​​Calculation
 ##### 2. Count of errors per print time
 ##### 3. Keyboard layout to help you type faster
+##### 4. Sound accompaniment
 ## Dependencies 
 ##### 1. time
 ##### 2. PyQT5
