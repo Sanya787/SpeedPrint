@@ -3,7 +3,7 @@
 ## Features
 ##### 1. Print Speed ​​Calculation
 ##### 2. Count of errors per print time
-##### 3. Progress statistics
+##### 3. Keyboard layout to help you type faster
 ## Dependencies 
 ##### 1. time
 ##### 2. PyQT5
@@ -14,6 +14,6 @@
 ##### 2. mypy
 ##### 3. pydocstyle
 ## Interface
-##### Simple interface, in the middle of the bottom and on the left tips for using the keyboard.  There are two windows in the center, on the left is the text that you need to type on the right for speed.  Right statistics
-##### This is how it looks like::
+##### Simple and clear interface. On the right: Statistics, text complexity selection and the "Начать" button. Below is a "hint" layout on how to type faster
+##### This is how it looks like:
 ![Иллюстрация к проекту](https://github.com/Sanya787/SpeedPrint/blob/main/project_image.png)
