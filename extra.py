@@ -1,5 +1,3 @@
-import sys
-import time
 import webbrowser
 
 from PyQt5 import uic
