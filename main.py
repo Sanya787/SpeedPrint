@@ -3,6 +3,7 @@ import time
 
 from extra import Window
 from PyQt5 import uic
+from PyQt5.QtMultimedia import QSound
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QPushButton, QLabel, QTextBrowser, QRadioButton
 )
@@ -49,6 +50,8 @@ class App(QWidget):
         super().__init__()
         self.flag = False
         self.initUI()
+        self.sound = QSound('myagkoe-spokoynoe-najatie-klavishi.wav', self)
+        self.error = QSound('__raclure__wrong.wav', self)
 
     def keyPressEvent(self, event):
         if self.flag:
@@ -68,16 +71,19 @@ class App(QWidget):
             self.speed.setText(str(round(speed)))
             if self.text[self.index] == event.text() != ' ':
                 self.input.setText(self.input.toPlainText() + event.text())
+                self.sound.play()
                 if not self.index + 1 == len(self.text):
                     self.index += 1
                 else:
                     self.flag = False
                 if self.text[self.index] == ' ':
+                    self.sound.play()
                     self.input.setText(self.input.toPlainText() + ' ')
                     self.index += 1
             else:
                 if event.key() not in ignor_list:
                     self.mark += 1
+                    self.error.play()
                     self.marks.setText(str(self.mark))
 
     def load_interface(self):
