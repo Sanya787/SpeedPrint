@@ -4,16 +4,17 @@ import time
 from extra import Window
 from PyQt5 import uic
 from PyQt5.QtMultimedia import QSound
+from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QPushButton, QLabel, QTextBrowser, QRadioButton
 )
 
-ignor_list = [
+LIST_WITH_ID = [
     16777216, 16777252, 167, 16777248, 16777250,
     16777251, 16777249, 6777220, 16777219, 16777248
 ]
 
-hard_text = [
+HARD_TEXT = [
     'В четверг четвёртого числа в четыре с четвертью часа лигурийский',
     'регулировщик регулировал в Лигурии,',
     'но тридцать три корабля лавировали, лавировали, да так',
@@ -25,7 +26,8 @@ hard_text = [
     'погоду что, дабы инцидент не стал претендентом на судебный',
     'прецедент, лигурийский регулировщик'
 ]
-middle_text = [
+
+MIDDLE_TEXT = [
     'Человек должен быть интеллигентен! А если у',
     'него профессия не требует интеллигентности?',
     'А если он не смог получить образования: так сложились',
@@ -35,7 +37,7 @@ middle_text = [
     'Она нужна и для окружающих, и для самого человека'
 ]
 
-easy_text = [
+EASY_TEXT = [
     'Фокус зрения читателя зависит от того, на сколько знаком ему текст.',
     'Чем более незнаком текст, тем фокус зрения уже.',
     'Незнакомое слово будет читаться по буквам.',
@@ -48,16 +50,17 @@ easy_text = [
 class App(QWidget):
     def __init__(self):
         super().__init__()
-        self.flag = False
         self.initUI()
-        self.sound = QSound('myagkoe-spokoynoe-najatie-klavishi.wav', self)
-        self.error = QSound('__raclure__wrong.wav', self)
+
+        self.flag = False
+        self.sound = QSound('sounds/myagkoe-spokoynoe-najatie-klavishi.wav', self)
+        self.error = QSound('sounds/__raclure__wrong.wav', self)
 
     def keyPressEvent(self, event):
         if self.flag:
             time_now = time.time() - self.time_start
-            second = round(time_now % 60)
-            minute = round(time_now // 60)
+            minute, second = round(time_now // 60), round(time_now % 60)
+
             if minute == 0:
                 minute = '00'
             elif minute < 10:
@@ -66,32 +69,62 @@ class App(QWidget):
                 second = '00'
             elif second < 10:
                 second = '0' + str(second)
+
             self.timer.setText(f'{minute}:{second}')
+            if time_now < 1:
+                time_now = 1
             speed = (self.index / round(time_now)) * 60
             self.speed.setText(str(round(speed)))
+
             if self.text[self.index] == event.text() != ' ':
                 self.input.setText(self.input.toPlainText() + event.text())
-                self.sound.play()
+                if self.value_on:
+                    self.sound.play()
                 if not self.index + 1 == len(self.text):
                     self.index += 1
                 else:
                     self.flag = False
                 if self.text[self.index] == ' ':
-                    self.sound.play()
                     self.input.setText(self.input.toPlainText() + ' ')
+                    if self.value_on:
+                        self.sound.play()
                     self.index += 1
             else:
-                if event.key() not in ignor_list:
-                    self.mark += 1
-                    self.error.play()
+                if event.key() not in LIST_WITH_ID:
                     self.marks.setText(str(self.mark))
+                    if self.value_on:
+                        self.error.play()
+                    self.mark += 1
+
+    def value_func(self):
+        self.value_on = not self.value_on
+        if self.value_on:
+            self.value.setIcon(QIcon('images/pngwing.com.png'))
+        else:
+            self.value.setIcon(QIcon('images/pngwing.png'))
+
+    def size_func(self):
+        self.size_on = not self.size_on
+        if not self.size_on:
+            self.size.setIcon(QIcon('images/Aa.png'))
+            self.input.setFont(QFont('.SF NS Text', 15))
+            self.browser.setFont(QFont('.SF NS Text', 15))
+        else:
+            self.size.setIcon(QIcon('images/Aa_big.png'))
+            self.input.setFont(QFont('.SF NS Text', 20))
+            self.browser.setFont(QFont('.SF NS Text', 20))
 
     def load_interface(self):
+        uic.loadUi('project.ui', self)
+
         self.mark = 0
         self.index = 0
-        uic.loadUi('project.ui', self)
+        self.value_on = True
+        self.size_on = True
+
         self.button_start = self.findChild(QPushButton, 'pushButton_62')
-        self.button_start.clicked.connect(self.start_button_func)
+        self.value = self.findChild(QPushButton, 'pushButton_63')
+        self.size = self.findChild(QPushButton, 'pushButton_64')
         self.timer = self.findChild(QLabel, 'label_10')
         self.speed = self.findChild(QLabel, 'label_8')
         self.marks = self.findChild(QLabel, 'label_12')
@@ -101,21 +134,27 @@ class App(QWidget):
         self.radio_button_2 = self.findChild(QRadioButton, 'radioButton_2')
         self.radio_button_3 = self.findChild(QRadioButton, 'radioButton_3')
 
+        self.size.clicked.connect(self.size_func)
+        self.value.clicked.connect(self.value_func)
+        self.button_start.clicked.connect(self.start_button_func)
+
     def start_button_func(self):
         self.timer.setText('00:00')
-        self.time_start = time.time()
-        self.mark = 0
-        self.index = 0
         self.speed.setText('0')
-        self.flag = True
         self.input.setText('')
         self.marks.setText('0')
+
+        self.time_start = time.time()
+        self.flag = True
+        self.mark = 0
+        self.index = 0
+
         if self.radio_button_3.isChecked():
-            self.text = ' '.join(hard_text)
+            self.text = ' '.join(HARD_TEXT)
         elif self.radio_button_2.isChecked():
-            self.text = ' '.join(middle_text)
+            self.text = ' '.join(MIDDLE_TEXT)
         else:
-            self.text = ' '.join(easy_text)
+            self.text = ' '.join(EASY_TEXT)
         self.browser.setText(self.text)
 
     def initUI(self):
@@ -124,11 +163,13 @@ class App(QWidget):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    app2 = QApplication(sys.argv)
+
     window = App()
     window.show()
 
-    app2 = QApplication(sys.argv)
     window2 = Window()
     window2.show()
+
     sys.exit(app2.exec())
     sys.exit(app.exec())
