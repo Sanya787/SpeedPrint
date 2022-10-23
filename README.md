@@ -17,4 +17,4 @@
 ## Interface
 ##### Simple and clear interface. On the right: Statistics, text complexity selection and the "Начать" button. Below is a "hint" layout on how to type faster
 ##### This is how it looks like:
-![Иллюстрация к проекту](https://github.com/Sanya787/SpeedPrint/blob/main/project_image.png)
+![Иллюстрация к проекту](https://github.com/Sanya787/SpeedPrint/blob/main/Без названия.gif)
