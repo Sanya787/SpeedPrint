@@ -59,16 +59,7 @@ class App(QWidget):
     def keyPressEvent(self, event):
         if self.flag:
             time_now = time.time() - self.time_start
-            minute, second = round(time_now // 60), round(time_now % 60)
-
-            if minute == 0:
-                minute = '00'
-            elif minute < 10:
-                minute = '0' + str(minute)
-            if second == 0:
-                second = '00'
-            elif second < 10:
-                second = '0' + str(second)
+            minute, second = f'{round(time_now // 60):02}', f'{round(time_now % 60):02}'
 
             self.timer.setText(f'{minute}:{second}')
             if time_now < 1:
