@@ -1131,6 +1131,10 @@ border: 1px solid #094065;</string>
    <property name="contextMenuPolicy">
     <enum>Qt::CustomContextMenu</enum>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(160, 160, 160);
+</string>
+   </property>
   </widget>
   <widget class="QPushButton" name="pushButton_56">
    <property name="geometry">
@@ -1140,6 +1144,9 @@ border: 1px solid #094065;</string>
      <width>31</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="toolTipDuration">
+    <number>-3</number>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);
@@ -1658,6 +1665,16 @@ border: 1px solid #094065;</string>
      <stylestrategy>PreferAntialias</stylestrategy>
     </font>
    </property>
+   <property name="toolTip">
+    <string/>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(235, 235, 235);
+</string>
+   </property>
+   <property name="placeholderText">
+    <string/>
+   </property>
   </widget>
   <widget class="QPushButton" name="pushButton_63">
    <property name="geometry">
@@ -1743,6 +1760,65 @@ border: 1px solid #094065;</string>
      <width>51</width>
      <height>51</height>
     </size>
+   </property>
+  </widget>
+  <widget class="QProgressBar" name="progressBar">
+   <property name="geometry">
+    <rect>
+     <x>840</x>
+     <y>330</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>50</weight>
+     <italic>true</italic>
+     <bold>false</bold>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QProgressBar{
+background-color:rgb(124, 113, 116);
+border-radius: 10px;
+color: white 
+}
+
+QProgressBar::chunk{
+border-radius: 10px;
+background-color:  rgb(150, 95, 190)
+}
+
+
+</string>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhNone</set>
+   </property>
+   <property name="value">
+    <number>0</number>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="textVisible">
+    <bool>true</bool>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="invertedAppearance">
+    <bool>false</bool>
+   </property>
+   <property name="textDirection">
+    <enum>QProgressBar::TopToBottom</enum>
+   </property>
+   <property name="format">
+    <string>%p%</string>
    </property>
   </widget>
  </widget>
