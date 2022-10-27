@@ -1,12 +1,16 @@
 import sys
 import time
+import random
+import sqlite3
 
 from extra import Window
 from PyQt5 import uic
+from PyQt5.Qt import Qt
 from PyQt5.QtMultimedia import QSound
 from PyQt5.QtGui import QIcon, QFont
 from PyQt5.QtWidgets import (
-    QApplication, QWidget, QPushButton, QLabel, QTextBrowser, QRadioButton
+    QApplication, QWidget, QPushButton, QLabel,
+    QTextBrowser, QRadioButton, QProgressBar
 )
 
 LIST_WITH_ID = [
@@ -14,37 +18,25 @@ LIST_WITH_ID = [
     16777251, 16777249, 6777220, 16777219, 16777248
 ]
 
-HARD_TEXT = [
-    'В четверг четвёртого числа в четыре с четвертью часа лигурийский',
-    'регулировщик регулировал в Лигурии,',
-    'но тридцать три корабля лавировали, лавировали, да так',
-    'и не вылавировали. А потом протокол',
-    'про протокол протоколом запротоколировал. Как интервьюером',
-    'интервьюируемый лигурийский регулировщик речисто,',
-    'да не чисто рапортовал, да не дорапортовал дорапортовывал,',
-    'да так зарапортовался про размокропогодившуюся',
-    'погоду что, дабы инцидент не стал претендентом на судебный',
-    'прецедент, лигурийский регулировщик'
-]
 
-MIDDLE_TEXT = [
-    'Человек должен быть интеллигентен! А если у',
-    'него профессия не требует интеллигентности?',
-    'А если он не смог получить образования: так сложились',
-    'обстоятельства? А если интеллигентность сделает',
-    'его “белой вороной” среди его сослуживцев, друзей, родных?',
-    'Нет, нет и нет! Интеллигентность нужна при всех обстоятельствах.',
-    'Она нужна и для окружающих, и для самого человека'
-]
+def get_text(hard=1):
+    hard_dictionary = {
+        1: '< 30',
+        2: '> 30 AND hard < 60',
+        3: '> 60',
+    }
+    connection = sqlite3.connect('base_texts.db')
+    cursor = connection.cursor()
 
-EASY_TEXT = [
-    'Фокус зрения читателя зависит от того, на сколько знаком ему текст.',
-    'Чем более незнаком текст, тем фокус зрения уже.',
-    'Незнакомое слово будет читаться по буквам.',
-    'Чем более знаком текст, тем фокус зрения шире - в этом случае, даже,',
-    'нетренированный читатель воспринимает текст как единую картинку.',
-    'То есть невозможно, читать любой текст с одинаково широким углом зрения.',
-]
+    query = f'''
+    SELECT text FROM texts
+    WHERE hard {hard_dictionary[hard]}'''
+
+    cursor.execute(query)
+    connection.commit()
+    answer = random.choice(cursor.fetchall())[0]
+    connection.close()
+    return answer
 
 
 class App(QWidget):
@@ -53,19 +45,26 @@ class App(QWidget):
         self.initUI()
 
         self.flag = False
-        self.sound = QSound('sounds/myagkoe-spokoynoe-najatie-klavishi.wav', self)
+        sound = 'sounds/myagkoe-spokoynoe-najatie-klavishi.wav'
+        self.sound = QSound(sound, self)
         self.error = QSound('sounds/__raclure__wrong.wav', self)
 
     def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Space:
+            print('d')
         if self.flag:
             time_now = time.time() - self.time_start
-            minute, second = f'{round(time_now // 60):02}', f'{round(time_now % 60):02}'
+            minute = f'{round(time_now // 60):02}'
+            second = f'{round(time_now % 60):02}'
 
             self.timer.setText(f'{minute}:{second}')
             if time_now < 1:
                 time_now = 1
             speed = (self.index / round(time_now)) * 60
             self.speed.setText(str(round(speed)))
+            if len(self.input.toPlainText()) != 0:
+                value = len(self.input.toPlainText()) / len(self.text) * 100
+                self.bar.setValue(round(value))
 
             if self.text[self.index] == event.text() != ' ':
                 self.input.setText(self.input.toPlainText() + event.text())
@@ -119,6 +118,7 @@ class App(QWidget):
         self.timer = self.findChild(QLabel, 'label_10')
         self.speed = self.findChild(QLabel, 'label_8')
         self.marks = self.findChild(QLabel, 'label_12')
+        self.bar = self.findChild(QProgressBar, 'progressBar')
         self.input = self.findChild(QTextBrowser, 'textBrowser_2')
         self.browser = self.findChild(QTextBrowser, 'textBrowser')
         self.radio_button_1 = self.findChild(QRadioButton, 'radioButton_1')
@@ -132,6 +132,7 @@ class App(QWidget):
     def start_button_func(self):
         self.timer.setText('00:00')
         self.speed.setText('0')
+        self.bar.setValue(0)
         self.input.setText('')
         self.marks.setText('0')
 
@@ -141,11 +142,11 @@ class App(QWidget):
         self.index = 0
 
         if self.radio_button_3.isChecked():
-            self.text = ' '.join(HARD_TEXT)
+            self.text = get_text(3)
         elif self.radio_button_2.isChecked():
-            self.text = ' '.join(MIDDLE_TEXT)
+            self.text = get_text(2)
         else:
-            self.text = ' '.join(EASY_TEXT)
+            self.text = get_text(1)
         self.browser.setText(self.text)
 
     def initUI(self):
@@ -164,3 +165,4 @@ if __name__ == '__main__':
 
     sys.exit(app2.exec())
     sys.exit(app.exec())
+    
