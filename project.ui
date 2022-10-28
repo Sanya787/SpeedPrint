@@ -18,14 +18,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>51</width>
-    <height>51</height>
+    <width>1067</width>
+    <height>647</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>99999</width>
-    <height>99999</height>
+    <width>1067</width>
+    <height>647</height>
    </size>
   </property>
   <property name="sizeIncrement">
@@ -397,7 +397,7 @@ border-radius: 20px;
 border: 1px solid #094065;</string>
    </property>
    <property name="text">
-    <string>А</string>
+    <string>П</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_19">
@@ -436,7 +436,7 @@ border-radius: 20px;
 border: 1px solid #094065;</string>
    </property>
    <property name="text">
-    <string>К</string>
+    <string>Е</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_21">
@@ -455,7 +455,7 @@ border-radius: 20px;
 border: 1px solid #094065;</string>
    </property>
    <property name="text">
-    <string>М</string>
+    <string>И</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_22">
