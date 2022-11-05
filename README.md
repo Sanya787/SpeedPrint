@@ -21,3 +21,5 @@
 ##### Simple and clear interface. On the right: Statistics, text complexity selection and the "Начать" button. Below is a "hint" layout on how to type faster
 ##### This is how it looks like:
 ![Иллюстрация к проекту](https://github.com/Sanya787/SpeedPrint/blob/main/gifka.gif)
+##### This is what the application colors look like:
+![Иллюстрация к проекту](https://github.com/Sanya787/SpeedPrint/blob/main/second_gifka.gif)
