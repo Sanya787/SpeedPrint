@@ -22,8 +22,11 @@
     <height>330</height>
    </size>
   </property>
+  <property name="acceptDrops">
+   <bool>true</bool>
+  </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Тест скорости печати</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background: #393437;</string>
