@@ -1135,6 +1135,12 @@ border: 1px solid #094065;</string>
     <string notr="true">color: rgb(160, 160, 160);
 </string>
    </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
   </widget>
   <widget class="QPushButton" name="pushButton_56">
    <property name="geometry">
@@ -1562,6 +1568,14 @@ border: 1px solid #094065;</string>
      <height>61</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>-1</pointsize>
+     <weight>75</weight>
+     <italic>false</italic>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="styleSheet">
     <string notr="true"> QPushButton {
      background-color: rgb(150, 95, 190);
@@ -1671,6 +1685,12 @@ border: 1px solid #094065;</string>
    <property name="styleSheet">
     <string notr="true">color: rgb(235, 235, 235);
 </string>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
    </property>
    <property name="placeholderText">
     <string/>
@@ -1783,14 +1803,14 @@ border: 1px solid #094065;</string>
    </property>
    <property name="styleSheet">
     <string notr="true">QProgressBar{
-background-color:rgb(124, 113, 116);
+background-color:rgb(150, 150, 150);
 border-radius: 10px;
 color: white 
 }
 
 QProgressBar::chunk{
 border-radius: 10px;
-background-color:  rgb(150, 95, 190)
+background-color: rgb(150, 95, 190)
 }
 
 
@@ -1819,6 +1839,108 @@ background-color:  rgb(150, 95, 190)
    </property>
    <property name="format">
     <string>%p%</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_65">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>460</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>174</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+     background-color: rgb(150, 95, 190);
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 10px;
+     color: rgb(235, 235, 235);
+     font: bold 14px;
+     min-width: 10em;
+ }
+ QPushButton::pressed {
+     background-color: rgb(120, 75, 170);
+     border-style: inset;
+ }</string>
+   </property>
+   <property name="text">
+    <string>Изменить основной цвет</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_66">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>510</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>174</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+     background-color: rgb(150, 95, 190);
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 10px;
+     color: rgb(235, 235, 235);
+     font: bold 14px;
+     min-width: 10em;
+ }
+ QPushButton::pressed {
+     background-color: rgb(120, 75, 170);
+     border-style: inset;
+ }</string>
+   </property>
+   <property name="text">
+    <string>Изменить цвет кнопок</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_67">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>560</y>
+     <width>201</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>174</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> QPushButton {
+     background-color: rgb(150, 95, 190);
+     border-style: outset;
+     border-width: 2px;
+     border-radius: 10px;
+     color: rgb(235, 235, 235);
+     font: bold 14px;
+     min-width: 10em;
+ }
+ QPushButton::pressed {
+     background-color: rgb(120, 75, 170);
+     border-style: inset;
+ }</string>
+   </property>
+   <property name="text">
+    <string>Изменить цвет текста</string>
    </property>
   </widget>
  </widget>
