@@ -17,7 +17,7 @@
 ##### 2. mypy
 ##### 3. pydocstyle
 ## How to open the application?
-##### Either run the main.py file or download the [exe](https://disk.yandex.ru/d/LXLf7Z5S9pWQjw)
+##### Either run the main.py file or download the [exe](https://disk.yandex.ru/d/IpOObTuVd7zrvA)
 ## Interface
 ##### Simple and clear interface. On the right: Statistics, text complexity selection and the "Начать" button. Below is a "hint" layout on how to type faster
 ##### This is how it looks like:
