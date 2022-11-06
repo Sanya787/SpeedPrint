@@ -11,6 +11,7 @@
 ##### 2. PyQT5
 ##### 3. sys
 ##### 4. webbrowser
+##### 5. sqlite3
 ## Codestyle linters and test frameworks
 ##### 1. flake8
 ##### 2. mypy
